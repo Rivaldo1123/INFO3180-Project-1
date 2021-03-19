@@ -1,3 +1,33 @@
 body {
+    background-color: #dddddd !important;
     padding-top: 50px;
+}
+
+.bg-green {
+    background-color: #24b5ab;
+}
+
+main {
+    padding-top: 25px;
+}
+
+.room-group,
+.money-group {
+    display: flex;
+}
+
+.form-group {
+    max-width: 80%;
+}
+
+.property {
+    background-color: white;
+    border: white;
+    border-radius: 5px;
+    padding: 15px;
+    max-width: 70%;
+}
+
+.page-header {
+    font-weight: 700;
 }

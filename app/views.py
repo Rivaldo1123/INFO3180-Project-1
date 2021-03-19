@@ -4,10 +4,12 @@ Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
-
-from app import app
-from flask import render_template, request, redirect, url_for
-
+import os
+from app import app, db
+from flask import render_template, request, redirect, url_for, flash
+from .forms import PropertyForm
+from .models import PropertyProfile
+from werkzeug.utils import secure_filename
 
 ###
 # Routing for your application.
@@ -24,6 +26,46 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
+@app.route('/property', methods= ['GET', 'POST'])
+def property():
+    propertyForm = PropertyForm()
+    if request.method == "POST":
+        if propertyForm.validate_on_submit():
+            propertyPhoto = propertyForm.photo.data
+            filename = secure_filename(propertyPhoto.filename)
+            propertyPhoto.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            title = propertyForm.title.data
+            description = propertyForm.description.data
+            bedrooms = propertyForm.bedrooms.data
+            bathrooms = propertyForm.bathrooms.data
+            location = propertyForm.location.data
+            price = propertyForm.price.data
+            proptype = propertyForm.proptype.data
+
+            prop =  PropertyProfile(title,description,bedrooms,bathrooms,location,price,proptype,filename)
+            
+            db.session.add(prop)
+            db.session.commit()
+            
+            flash('Property Added','success')
+            return redirect(url_for('properties'))
+        else:
+            flash(flash_errors(propertyForm))
+    return render_template('property.html', form = propertyForm)
+
+@app.route('/properties')
+def properties():
+    props = PropertyProfile.query.all()
+    return render_template('properties.html', props = props)
+
+
+@app.route('/property/<int:propid>') 
+def myproperty(propid = 1):
+
+    props = PropertyProfile.query.all()
+
+    return render_template('myproperty.html', prop = props)
 
 ###
 # The functions below should be applicable to all Flask apps.
