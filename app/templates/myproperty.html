@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/box2.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/bootstrap.css')}}">{% endblock %} {% block main %}
+
+<div class="card w-75 mx-auto my-5">
+    <div class="d-flex">
+        <img class="w-50" src="{{ url_for('static', filename = './uploads/' + prop.pic_name)}}">
+
+        <div class="card-body w-50">
+            <h4 class="card-title">
+                {{prop.title}}
+            </h4>
+            <div class="mt-4 d-flex">
+                <div class="prices">
+                    {{prop.price}}
+                </div>
+                <div class="proptype">
+                    {{prop.proptype}}
+                </div>
+            </div>
+            <div class="py-3">
+                {{prop.description}} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas qui neque molestiae quod non magni!
+            </div>
+            <div class="d-flex">
+                <div class="d-flex mr-4">
+                    <img src="{{ url_for('static', filename = 'icon/bed.svg')}}" width="20" height="20" fill="#393f46"></img>
+                    <h6 class="ml-2">
+                        {{prop.bedrooms}} Bedrooms
+                    </h6>
+                </div>
+                <div class="d-flex ml-3">
+                    <img src="{{ url_for('static', filename = 'icon/shower.svg')}}" width="20" height="20" fill="#393f46"></img>
+                    <h6 class="ml-2">
+                        {{prop.bathrooms}} Bathrooms
+                    </h6>
+                </div>
+            </div>
+            <br>
+            <div class="d-flex location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#282529" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+                <h6 class="card-text ml-2">
+                    {{prop.location}}
+                </h6>
+            </div>
+            <br>
+            <button class="btn bg-green text-white font-sml" type="button"> Email Realtor </button>
+        </div>
+    </div>
+
+</div> {% endblock %}

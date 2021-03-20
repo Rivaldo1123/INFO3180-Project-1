@@ -1,6 +1,11 @@
-img {
+.card-body {
+    flex: none !important;
+    max-width: 80%;
+}
+
+.image {
     height: 300px;
-    width: 100%;
+    width: 340px;
 }
 
 .location {
@@ -27,8 +32,4 @@ h4 {
     border-radius: 0px !important;
     padding: 15px;
     width: 100%;
-}
-
-.title {
-    font-size: 1.5rem;
 }

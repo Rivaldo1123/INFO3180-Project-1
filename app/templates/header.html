@@ -1,10 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-green fixed-top">
-    <span class="navbar-brand mb-0 h1">Project 1</span>
+    <img src="{{ url_for('static', filename = 'icon/home.svg')}}" width="20" height="20"></img>
+    <span class="navbar-brand mb-0 h1 ml-2">Project 1</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto ml-3">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
             </li>

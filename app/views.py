@@ -63,7 +63,7 @@ def properties():
 @app.route('/property/<int:propid>') 
 def myproperty(propid = 1):
 
-    props = PropertyProfile.query.all()
+    props = PropertyProfile.query.filter_by(id = propid).first()
 
     return render_template('myproperty.html', prop = props)
 
